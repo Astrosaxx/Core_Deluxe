@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+
+<h1>¡Hola <span>{{ usuario.nombre }}</span>!</h1>
+<a href="{{ url_for('login.cerrar_sesion') }}">Cerrar sesión</a>
+
+{% endblock %}
+
+
