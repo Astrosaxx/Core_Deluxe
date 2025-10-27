@@ -8,6 +8,8 @@
   {% block head_extra %}{% endblock %}
 </head>
 <body>
+    <div class="page-wrapper">
+        <main class="main-content">
             {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
                 <div class="flash-messages">
@@ -18,7 +20,15 @@
                     {% endfor %}
                 </div>
             {% endif %}
-        {% endwith %}
-        {% block content %}{% endblock %}
+            {% endwith %}
+            {% block content %}{% endblock %}
+        </main>
+        
+        <footer class="footer">
+                <div class="footer-section">
+                    <p class="footer-text">&copy; 2025 Core inicio de sesion y registro. Hecho por <a href="https://github.com/astrosaxx" target="_blank">Astrosax</a></p>
+                </div>
+        </footer>
+    </div>
 </body>
 </html>

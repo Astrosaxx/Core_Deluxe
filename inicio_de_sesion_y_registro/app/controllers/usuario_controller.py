@@ -90,6 +90,9 @@ def registro():
         else:
             # Si la validación falla, redirigir de nuevo al formulario de registro
             return redirect(url_for('login.registro'))
+    
+    # Método GET para mostrar el formulario de registro
+    return render_template('login.html')
         
 # ---------- Dashboard ----------
 @bp.route('/dashboard')

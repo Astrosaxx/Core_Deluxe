@@ -12,7 +12,7 @@ class MySQLConnection:
             host="localhost",  # Dirección del servidor de la base de datos
             port=3306,  # Puerto de la base de datos
             user="root",  # Nombre de usuario de la base de datos
-            password="admin123",  # Contraseña del usuario de la base de datos
+            password="admin4B",  # Contraseña del usuario de la base de datos
             db="esquema_estudiantes_cursos",  # Nombre de la base de datos
             charset="utf8mb4",  # Codificación de caracteres
             # Los resultados se devuelven como diccionarios

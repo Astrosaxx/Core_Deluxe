@@ -8,7 +8,7 @@
   {% block head_extra %}{% endblock %}
 </head>
 <body>
-            <!-- Mensajes flash -->
+    <main>
             {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
                 <div class="flash-messages">
@@ -21,5 +21,11 @@
             {% endif %}
         {% endwith %}
         {% block content %}{% endblock %}
+    </main>
+        <footer class="footer">
+                <div class="footer-section">
+                    <p class="footer-text">&copy; 2025 Core estudiantes y curso. Hecho por <a href="https://github.com/astrosaxx" target="_blank">Astrosax</a></p>
+                </div>
+        </footer>
 </body>
 </html>
