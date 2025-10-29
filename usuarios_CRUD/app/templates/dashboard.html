@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <div>
+        <h1 class="h4 mb-0">Usuarios</h1>
+        <div class="text-muted small">Lista de usuarios registrados</div>
+    </div>
+    <div>
+        <a class="btn btn-primary btn-sm" href="{{ url_for('usuarios.nuevo_usuario') }}">Nuevo Usuario</a>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellido</th>
+                        <th scope="col">E-mail</th>
+                        <th scope="col">Fecha Creación</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for usuario in usuarios %}
+                    <tr>
+                        <td>{{ usuario.id }}</td>
+                        <td>{{ usuario.nombre }}</td>
+                        <td>{{ usuario.apellido }}</td>
+                        <td>{{ usuario.email }}</td>
+                        <td class="text-muted small">{{ usuario.fecha_creacion }}</td>
+                        <td>
+                            <div class="d-flex gap-1 align-items-center">
+                                <a class="btn btn-outline-info btn-sm" href="{{ url_for('usuarios.ver_usuario', id=usuario.id) }}">Ver</a>
+                                <a class="btn btn-outline-secondary btn-sm" href="{{ url_for('usuarios.editar_usuario', id=usuario.id) }}">Editar</a>
+                                <form action="{{ url_for('usuarios.borrar_usuario', id=usuario.id) }}" method="post" class="d-inline" onsubmit="return confirm('¿Estás seguro que quieres borrar este usuario? Esta acción no se puede deshacer.');">
+                                    <button type="submit" class="btn btn-sm btn-danger">Borrar</button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+

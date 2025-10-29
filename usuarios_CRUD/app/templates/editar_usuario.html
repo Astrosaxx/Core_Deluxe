@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %}Editar Usuario{% endblock %}
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <div>
+        <h1 class="h4 mb-0">Editar Usuario #{{ usuario.id }}</h1>
+        <div class="text-muted small">Modificar los datos del usuario</div>
+    </div>
+    <div>
+        <a class="btn btn-secondary btn-sm" href="{{ url_for('usuarios.dashboard') }}">Volver</a>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <form action="{{ url_for('usuarios.editar_usuario', id=usuario.id) }}" method="post">
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input value="{{ usuario.nombre }}" type="text" class="form-control" id="nombre" name="nombre" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="apellido" class="form-label">Apellido</label>
+                <input value="{{ usuario.apellido }}" type="text" class="form-control" id="apellido" name="apellido" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="email" class="form-label">E-mail</label>
+                <input value="{{ usuario.email }}" type="email" class="form-control" id="email" name="email" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Actualizar</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
