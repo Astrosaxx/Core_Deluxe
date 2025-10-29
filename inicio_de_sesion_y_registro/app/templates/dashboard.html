@@ -2,8 +2,49 @@
 {% block title %}Dashboard{% endblock %}
 {% block content %}
 
-<h1>¡Hola <span>{{ usuario.nombre }}</span>!</h1>
-<a href="{{ url_for('login.cerrar_sesion') }}">Cerrar sesión</a>
+<div class="dashboard-container">
+    <div class="dashboard-card">
+        <h1>¡Hola, <span>{{ usuario.nombre }}</span>!</h1>
+        
+        <div style="margin-top: 32px; padding-top: 24px; border-top: 1px solid #e5e7eb;">
+            <p style="color: #6b7280; font-size: 15px; margin-bottom: 16px;">
+                <strong style="color: #1a1a1a;">Información de tu cuenta</strong>
+            </p>
+            
+            <div style="display: grid; gap: 12px; font-size: 14px;">
+                <div style="display: flex; justify-content: space-between; padding: 8px 0;">
+                    <span style="color: #6b7280;">Nombre completo:</span>
+                    <span style="font-weight: 500; color: #1a1a1a;">{{ usuario.nombre }} {{ usuario.apellido }}</span>
+                </div>
+                
+                <div style="display: flex; justify-content: space-between; padding: 8px 0;">
+                    <span style="color: #6b7280;">Email:</span>
+                    <span style="font-weight: 500; color: #1a1a1a;">{{ usuario.email }}</span>
+                </div>
+                
+                {% if usuario.fecha_nacimiento %}
+                <div style="display: flex; justify-content: space-between; padding: 8px 0;">
+                    <span style="color: #6b7280;">Fecha de nacimiento:</span>
+                    <span style="font-weight: 500; color: #1a1a1a;">{{ usuario.fecha_nacimiento|format_date }}</span>
+                </div>
+                {% endif %}
+                
+                {% if usuario.genero %}
+                <div style="display: flex; justify-content: space-between; padding: 8px 0;">
+                    <span style="color: #6b7280;">Género:</span>
+                    <span style="font-weight: 500; color: #1a1a1a;">{{ usuario.genero|capitalize }}</span>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        
+        <div style="margin-top: 32px; padding-top: 24px; border-top: 1px solid #e5e7eb;">
+            <a href="{{ url_for('login.cerrar_sesion') }}" style="display: inline-block;">
+                Cerrar sesión
+            </a>
+        </div>
+    </div>
+</div>
 
 {% endblock %}
 

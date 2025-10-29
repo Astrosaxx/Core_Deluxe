@@ -1,5 +1,6 @@
 from app.config.mysqlconnection import connectToMySQL
 from flask import flash
+from datetime import datetime, timedelta
 import re
 
 EMAIL_REGEX = r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$'
@@ -90,6 +91,15 @@ class Usuario:
             is_valid = False
         if not data.get('fecha_nacimiento'):
             flash("Debes ingresar una fecha de nacimiento.", "error")
+            is_valid = False
+        if not isinstance(data.get('fecha_nacimiento'), datetime):
+            flash("La fecha de nacimiento debe ser una fecha válida.", "error")
+            is_valid = False        
+        elif datetime.strptime(data.get('fecha_nacimiento'), '%Y-%m-%d').date() > datetime.now().date():
+            flash("La fecha de nacimiento no puede ser mayor a la fecha actual.", "error")
+            is_valid = False
+        elif datetime.now().date() - datetime.strptime(data.get('fecha_nacimiento'), '%Y-%m-%d').date() < timedelta(days=365*18):
+            flash("Debes tener al menos 18 años para registrarte.", "error")
             is_valid = False
         if not data.get('genero'):
             flash("Debes seleccionar un género.", "error")
